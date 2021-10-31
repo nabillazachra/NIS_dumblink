@@ -1,0 +1,188 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
+
+.container {
+  max-width: fit-content;
+}
+
+body {
+  box-sizing: border-box !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  background-color: #f2f2f2 !important;
+  font-family: "Poppins", sans-serif !important;
+}
+
+.landing {
+  background: #ff9f00;
+  height: 100vh !important;
+  background-position: center !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+}
+
+.back {
+  background: url("Bg.png");
+  height: 100% !important;
+  background-position: center !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+}
+
+.text-landing {
+  color: white;
+  font-size: larger !important;
+  margin-top: -50px !important;
+  margin-bottom: 50px !important;
+}
+
+.left-section {
+  margin: 25vh 10vh !important;
+}
+
+.logo {
+  width: 400px !important;
+  height: auto !important;
+}
+
+.btn-group {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+}
+
+.radius {
+  border-radius: 15px !important;
+  margin-right: 20px !important;
+  border: none !important;
+  height: 40px !important;
+  cursor: pointer !important;
+}
+
+.rad {
+  border-radius: 10px !important;
+}
+
+.ws {
+  width: 155px !important;
+}
+
+.w-auto {
+  width: 100% !important;
+}
+
+.auto {
+  border-radius: 3px !important;
+  border: none !important;
+  height: 35px !important;
+  cursor: pointer !important;
+}
+
+.btn-login {
+  color: black;
+}
+
+.btn-reg {
+  background-color: #ff9f00;
+  color: white;
+}
+
+.btn-start {
+  background-color: black;
+  color: white;
+  border-radius: 5px !important;
+  padding: 5px !important;
+  margin: auto !important;
+  border: none !important;
+  height: 40px !important;
+  cursor: pointer !important;
+}
+
+.p-e {
+  cursor: pointer !important;
+}
+
+.bg-gray {
+  background-color: darkgrey !important;
+}
+
+.over-auto {
+  overflow-x: auto !important;
+}
+
+.no-border {
+  border-top: 0 !important;
+  border-left: 0 !important;
+  border-right: 0 !important;
+  border-bottom: 1 solid black !important;
+  box-shadow: none !important; /* You may want to include this as bootstrap applies these styles too */
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  display: block;
+  padding-top: 0;
+  overflow-x: hidden;
+  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+}
+
+.sidebar {
+  width: 250px;
+}
+
+/* .mr-tm {
+  margin-top: -51px;
+} */
+
+.mr-side {
+  margin-top: 51px;
+}
+
+.mr-g {
+  margin-left: 50px;
+}
+
+.wow {
+  width: 120px;
+  height: auto;
+}
+
+.current {
+  color: #ff9f00 !important;
+}
+
+.ava {
+  border: 3px solid #000;
+  border-radius: 50%;
+  height: 80px;
+  width: 80px;
+}
+
+.icon {
+  margin-top: 3.5px;
+  width: 16px;
+  height: 15px;
+}
+
+.cont {
+  margin-left: 11%;
+  padding-top: 3%;
+  height: 100vh;
+}
+
+.dc {
+  width: 400px;
+  margin: auto;
+}
+
+.wd-a {
+  width: 100%;
+  height: auto;
+}
+
+.bg {
+  background: #ffd9d9 !important;
+}
