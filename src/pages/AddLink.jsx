@@ -13,6 +13,7 @@ export default function AddLink() {
   const [data, setData] = useState(null);
   const [preview, setPreview] = useState(null);
   const [previewLogo, setPreviewLogo] = useState(null);
+  const [idData, setIdData] = useState(null);
   const [brand, setBrand] = useState({
     name: "",
     description: "",
@@ -57,6 +58,7 @@ export default function AddLink() {
 
       const response = await API.post("/brand/", formData, config);
       console.log(response);
+      setIdData(response.data.data);
     } catch (error) {
       console.log(error);
     }
@@ -66,7 +68,7 @@ export default function AddLink() {
     e.preventDefault();
     addBrandFunc();
     alert("Data successfully added");
-    // history.push(`/published/${id}`);
+    history.push(`/published/${idData.id}`);
   };
 
   const handleClick = () => {
@@ -80,7 +82,7 @@ export default function AddLink() {
       const tmp = template.find((item) => item.id === parseInt(id));
       setData(tmp);
     }
-  }, [id]);
+  }, []);
 
   const handleChange = (e) => {
     setBrand({

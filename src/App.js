@@ -11,6 +11,7 @@ import Template from "./pages/Template";
 import MyLinks from "./pages/MyLinks";
 import Profile from "./pages/Profile";
 import Published from "./pages/Published";
+import NotFound from "./pages/NotFound";
 
 import { API, setAuthToken } from "./config/api";
 
@@ -70,6 +71,7 @@ function App() {
       <PrivateRoute path="/my-link" component={MyLinks} />
       <PrivateRoute path="/add-link/:id" component={AddLink} />
       <Route exact path="/published/:id" component={Published} />
+      <Route exact path="*" component={NotFound} />
     </Switch>
   );
 }

@@ -1,7 +1,5 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { Modal, Form, Alert } from "react-bootstrap";
-
-import { UserContext } from "../context/userContext";
 
 import { API } from "../config/api";
 
