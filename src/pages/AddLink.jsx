@@ -25,6 +25,11 @@ export default function AddLink() {
       url: "",
       logo: "",
     },
+    {
+      title: "",
+      url: "",
+      logo: "",
+    },
   ]);
 
   console.log(addForm);
@@ -38,6 +43,7 @@ export default function AddLink() {
     } else if (e.target.name === "logo") {
       values[index].logo = e.target.files;
     }
+    // console.log(values);
 
     setAddForm(values);
   };
@@ -58,7 +64,7 @@ export default function AddLink() {
 
       const response = await API.post("/brand/", formData, config);
       console.log(response);
-      setIdData(response.data.data);
+      setIdData(response.data.data.brand);
     } catch (error) {
       console.log(error);
     }

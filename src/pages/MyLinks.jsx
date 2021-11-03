@@ -80,7 +80,7 @@ export default function MyLinks() {
                 <div className="p-2 mb-2 mx-3 w-auto">
                   <span className="fw-bold me-3">All Links</span>{" "}
                   <span className="p-2 bg-warning text-light rad w-auto">
-                    0
+                    {brands?.length}
                   </span>
                 </div>
                 <div class="col-sm-9">
@@ -92,13 +92,6 @@ export default function MyLinks() {
                     onChange={(e) => searchData(e.target.value)}
                   />
                 </div>
-                <button
-                  type="button"
-                  onClick={searchData}
-                  className="mb-2 me-3 btn-warning w-auto rad text-light"
-                >
-                  Search
-                </button>
               </div>
             </form>
           </div>
