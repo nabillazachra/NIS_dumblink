@@ -13,7 +13,7 @@ export default function ModalDelete(props) {
             size="sm"
             className="me-2 w-25"
             variant="danger"
-            onClick={props.deleteBrand}
+            onClick={() => props.deleteData(props.dataId)}
           >
             Yes
           </Button>

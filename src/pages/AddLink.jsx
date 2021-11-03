@@ -12,7 +12,6 @@ export default function AddLink() {
   let { id } = useParams();
   const [data, setData] = useState(null);
   const [preview, setPreview] = useState(null);
-  const [previewLogo, setPreviewLogo] = useState(null);
   const [idData, setIdData] = useState(null);
   const [brand, setBrand] = useState({
     name: "",
@@ -24,27 +23,41 @@ export default function AddLink() {
       title: "",
       url: "",
       logo: "",
+      previewImage: "",
     },
     {
       title: "",
       url: "",
       logo: "",
+      previewImage: "",
     },
   ]);
 
   console.log(addForm);
 
   const handleOnChange = (e, index) => {
+    e.preventDefault();
     const values = [...addForm];
-    if (e.target.name === "title") {
+    if (e.target.name === `title${index}`) {
       values[index].title = e.target.value;
-    } else if (e.target.name === "url") {
+      setAddForm(values);
+    }
+    if (e.target.name === `url${index}`) {
       values[index].url = e.target.value;
-    } else if (e.target.name === "logo") {
-      values[index].logo = e.target.files;
+      setAddForm(values);
+    }
+    if (e.target.name === `logo${index}` && e.target.files[0]) {
+      let url = URL.createObjectURL(e.target.files[0]);
+      values[index].previewImage = url;
+      setAddForm(values);
+    }
+    if (e.target.name === `logo${index}` && e.target.files[0]) {
+      let url = e.target.files;
+      values[index].logo = url;
+      setAddForm(values);
     }
 
-    setAddForm(values);
+    // console.log(addForm);
   };
 
   const addBrandFunc = async () => {
@@ -59,7 +72,12 @@ export default function AddLink() {
       formData.set("name", brand.name);
       formData.set("description", brand.description);
       formData.set("image", brand.image[0], brand.image[0].name);
-      formData.set("data", JSON.stringify(addForm));
+      // formData.set("data", JSON.stringify(addForm));
+      addForm.map((item) => {
+        formData.append("title", item.title);
+        formData.append("url", item.url);
+        formData.append("logo", item.logo[0]);
+      });
 
       const response = await API.post("/brand/", formData, config);
       console.log(response);
@@ -78,7 +96,7 @@ export default function AddLink() {
 
   const handleClick = () => {
     const values = [...addForm];
-    values.push({ title: "", url: "", logo: "" });
+    values.push({ title: "", url: "", logo: "", previewImage: "" });
     setAddForm(values);
   };
 
@@ -179,25 +197,27 @@ export default function AddLink() {
                             <Col md={4}>
                               <div className="mb-5">
                                 <span className="mt-3 me-5 mb-3">
-                                  {previewLogo !== null ? (
+                                  {item.previewImage !== "" ? (
                                     <img
-                                      className="w-25 h-25"
-                                      src={previewLogo}
+                                      className="w-100 h-100"
+                                      src={item.previewImage}
                                       alt="logo"
                                     />
                                   ) : (
                                     <img src={defUpload} alt="logo" />
                                   )}
                                 </span>
-                                <label htmlFor="logo" className="p-e">
-                                  <input
-                                    type="file"
-                                    name="logo"
-                                    hidden
-                                    id="logo"
-                                    value={item.logo}
-                                    onChange={(e) => handleOnChange(e, index)}
-                                  />
+                                <input
+                                  type="file"
+                                  name={`logo${index}`}
+                                  hidden
+                                  id={`idLogo${index}`}
+                                  onChange={(e) => handleOnChange(e, index)}
+                                />
+                                <label
+                                  htmlFor={`idLogo${index}`}
+                                  className="p-e"
+                                >
                                   <span className="mt-3 btn btn-warning text-light w-auto">
                                     Upload
                                   </span>
@@ -211,7 +231,7 @@ export default function AddLink() {
                                 </label>
                                 <input
                                   type="text"
-                                  name="title"
+                                  name={`title${index}`}
                                   className="bg-transparent no-border form-control"
                                   placeholder="ex. Example"
                                   value={item.title}
@@ -224,7 +244,7 @@ export default function AddLink() {
                                   type="text"
                                   className="bg-transparent no-border form-control"
                                   placeholder="ex. www.example.com"
-                                  name="url"
+                                  name={`url${index}`}
                                   value={item.url}
                                   onChange={(e) => handleOnChange(e, index)}
                                 />

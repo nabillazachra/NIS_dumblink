@@ -12,6 +12,7 @@ export default function MyLinks() {
   const [brands, setBrands] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredResult, setFilteredResult] = useState([]);
+  const [itemId, setItemId] = useState(null);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -95,10 +96,82 @@ export default function MyLinks() {
               </div>
             </form>
           </div>
+          <ModalDelete
+            show={show}
+            onHide={handleClose}
+            deleteData={deleteModal}
+            dataId={itemId}
+            handleClose={handleClose}
+          />
           {searchTerm.length > 1
             ? filteredResult.map((item) => {
                 return (
-                  <Row className="mb-3">
+                  <>
+                    <Row className="mb-3">
+                      <Col>
+                        <img
+                          className="w-50 h-auto"
+                          src={item.image}
+                          alt={item.name}
+                        />
+                      </Col>
+                      <Col className="my-3" md={2}>
+                        <Row>
+                          <span className="fw-bolder">{item.name}</span>
+                        </Row>
+                        <Row>
+                          <span className="text-muted">{item.uniqueLink}</span>
+                        </Row>
+                      </Col>
+                      <Col className="my-3">
+                        <Row>
+                          <span className="fw-bolder text-center">
+                            {item.viewCount}
+                          </span>
+                        </Row>
+                        <Row>
+                          <span className="text-muted text-center">Visit</span>
+                        </Row>
+                      </Col>
+                      <Col className="my-3">
+                        <Row>
+                          <Col>
+                            <span>
+                              <AiOutlineEye
+                                onClick={() => redirectView(item.id)}
+                                size={30}
+                                className="text-muted p-e"
+                              />
+                            </span>
+                          </Col>
+                          <Col>
+                            <AiOutlineEdit
+                              size={30}
+                              className="text-muted p-e"
+                            />
+                          </Col>
+                          <Col>
+                            <span
+                              onClick={() => {
+                                setShow(true);
+                                setItemId(item.id);
+                              }}
+                            >
+                              <AiOutlineDelete
+                                size={30}
+                                className="text-muted p-e"
+                              />
+                            </span>
+                          </Col>
+                        </Row>
+                      </Col>
+                    </Row>
+                  </>
+                );
+              })
+            : brands?.map((item, index) => (
+                <>
+                  <Row key={index} className="mb-3">
                     <Col>
                       <img
                         className="w-50 h-auto"
@@ -112,7 +185,7 @@ export default function MyLinks() {
                       </Row>
                       <Row>
                         <span className="text-muted">
-                          http://localhost:3000
+                          {item.uniqueLink} {item.id}
                         </span>
                       </Row>
                     </Col>
@@ -129,9 +202,8 @@ export default function MyLinks() {
                     <Col className="my-3">
                       <Row>
                         <Col>
-                          <span>
+                          <span onClick={() => redirectView(item.id)}>
                             <AiOutlineEye
-                              onClick={() => redirectView(item.id)}
                               size={30}
                               className="text-muted p-e"
                             />
@@ -141,78 +213,22 @@ export default function MyLinks() {
                           <AiOutlineEdit size={30} className="text-muted p-e" />
                         </Col>
                         <Col>
-                          <span onClick={handleShow}>
+                          <span
+                            onClick={() => {
+                              setShow(true);
+                              setItemId(item.id);
+                            }}
+                          >
                             <AiOutlineDelete
                               size={30}
                               className="text-muted p-e"
                             />
                           </span>
-                          <ModalDelete
-                            show={show}
-                            onHide={handleClose}
-                            deleteBrand={() => deleteModal(item.id)}
-                            handleClose={handleClose}
-                          />
                         </Col>
                       </Row>
                     </Col>
                   </Row>
-                );
-              })
-            : brands?.map((item, index) => (
-                <Row key={index} className="mb-3">
-                  <Col>
-                    <img
-                      className="w-50 h-auto"
-                      src={item.image}
-                      alt={item.name}
-                    />
-                  </Col>
-                  <Col className="my-3" md={2}>
-                    <Row>
-                      <span className="fw-bolder">{item.name}</span>
-                    </Row>
-                    <Row>
-                      <span className="text-muted">http://localhost:3000</span>
-                    </Row>
-                  </Col>
-                  <Col className="my-3">
-                    <Row>
-                      <span className="fw-bolder text-center">
-                        {item.viewCount}
-                      </span>
-                    </Row>
-                    <Row>
-                      <span className="text-muted text-center">Visit</span>
-                    </Row>
-                  </Col>
-                  <Col className="my-3">
-                    <Row>
-                      <Col>
-                        <span onClick={() => redirectView(item.id)}>
-                          <AiOutlineEye size={30} className="text-muted p-e" />
-                        </span>
-                      </Col>
-                      <Col>
-                        <AiOutlineEdit size={30} className="text-muted p-e" />
-                      </Col>
-                      <Col>
-                        <span onClick={handleShow}>
-                          <AiOutlineDelete
-                            size={30}
-                            className="text-muted p-e"
-                          />
-                        </span>
-                        <ModalDelete
-                          show={show}
-                          onHide={handleClose}
-                          deleteBrand={() => deleteModal(item.id)}
-                          handleClose={handleClose}
-                        />
-                      </Col>
-                    </Row>
-                  </Col>
-                </Row>
+                </>
               ))}
         </Container>
       </Layout>
