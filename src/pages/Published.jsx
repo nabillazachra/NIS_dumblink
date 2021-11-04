@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useHistory} from "react-router-dom";
-import { Container } from "react-bootstrap";
+import { useParams, useHistory } from "react-router-dom";
+import { Container, Col, Row } from "react-bootstrap";
 import { API } from "../config/api";
 
 export default function Published() {
@@ -41,12 +41,28 @@ export default function Published() {
           <Container>
             {brand?.link.map((item, index) => (
               <div className="bg-dark p-1 mb-2">
-                <p
-                  onClick={() => redirectURL(item.url)}
-                  className="text-light my-auto p-e"
-                >
-                  {item.title}
-                </p>
+                <Row>
+                  <Col>
+                    <div className="text-start">
+                      <img
+                        width={50}
+                        className="rad"
+                        src={`http://localhost:5000/uploads/${item.logo}`}
+                        alt={item?.title}
+                      />
+                    </div>
+                  </Col>
+                  <Col>
+                    <div className="text-start">
+                      <p
+                        onClick={() => redirectURL(item.url)}
+                        className="text-light mt-1 my-auto p-e"
+                      >
+                        {item.title}
+                      </p>
+                    </div>
+                  </Col>
+                </Row>
               </div>
             ))}
           </Container>
