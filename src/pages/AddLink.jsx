@@ -56,8 +56,6 @@ export default function AddLink() {
       values[index].logo = url;
       setAddForm(values);
     }
-
-    // console.log(addForm);
   };
 
   const addBrandFunc = async () => {
@@ -72,7 +70,6 @@ export default function AddLink() {
       formData.set("name", brand.name);
       formData.set("description", brand.description);
       formData.set("image", brand.image[0], brand.image[0].name);
-      // formData.set("data", JSON.stringify(addForm));
       addForm.map((item) => {
         formData.append("title", item.title);
         formData.append("url", item.url);

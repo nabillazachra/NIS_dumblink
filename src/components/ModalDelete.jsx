@@ -6,7 +6,7 @@ export default function ModalDelete(props) {
     <>
       <Modal {...props}>
         <Modal.Body className="text-success">
-          Are you sure want to remove this link?
+          Are you sure want to remove this data?
         </Modal.Body>
         <div className="text-end m-2">
           <Button

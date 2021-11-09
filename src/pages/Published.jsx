@@ -40,12 +40,16 @@ export default function Published() {
           <h5 className="text-muted">{brand?.description}</h5>
           <Container>
             {brand?.link.map((item, index) => (
-              <div className="bg-dark p-1 mb-2">
+              <div
+                onClick={() => redirectURL(item.url)}
+                className="bg-dark p-1 mb-2"
+              >
                 <Row>
                   <Col>
                     <div className="text-start">
                       <img
                         width={50}
+                        height={35}
                         className="rad"
                         src={`http://localhost:5000/uploads/${item.logo}`}
                         alt={item?.title}
@@ -54,10 +58,7 @@ export default function Published() {
                   </Col>
                   <Col>
                     <div className="text-start">
-                      <p
-                        onClick={() => redirectURL(item.url)}
-                        className="text-light mt-1 my-auto p-e"
-                      >
+                      <p className="text-light mt-1 my-auto p-e">
                         {item.title}
                       </p>
                     </div>
